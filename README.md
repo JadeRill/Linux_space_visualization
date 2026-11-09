@@ -13,6 +13,9 @@
 是 `home_disk_treemap.py` 那类静态出图脚本的交互版：不用反复跑脚本、改数据、
 重新出图。
 
+<img width="2550" height="1352" alt="9ead2448-bf19-40fe-a30c-eb9b60a2506e" src="https://github.com/user-attachments/assets/ce30cc88-2bb2-43c4-995f-641cf921f562" />
+
+
 ## 快速开始
 
 ```bash
