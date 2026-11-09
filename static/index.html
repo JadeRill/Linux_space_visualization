@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disk Explorer · 磁盘占用可视化</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">▚</span>
+    <span>Disk Explorer</span>
+  </div>
+
+  <form id="path-form" class="path-form" autocomplete="off">
+    <input id="path-input" type="text" spellcheck="false" placeholder="输入要查看的路径，例如 ~/workspace/00_LLM">
+    <button type="submit" class="button primary">扫描</button>
+  </form>
+
+  <div class="controls">
+    <div class="segmented" role="tablist">
+      <button id="view-treemap" class="segment active" role="tab">矩形树图</button>
+      <button id="view-tree" class="segment" role="tab">目录树</button>
+    </div>
+    <button id="home-button" class="button" title="回到允许浏览的根目录">⌂ 家目录</button>
+    <button id="up-button" class="button" title="返回上一级 (Backspace)">↑ 上一级</button>
+    <button id="refresh-button" class="button" title="重新测量当前目录 (R)">⟳ 重新扫描</button>
+    <label class="toggle" title="每轮扫描结束后自动重新测量">
+      <input type="checkbox" id="auto-refresh">
+      <span>自动刷新</span>
+    </label>
+  </div>
+</header>
+
+<nav id="breadcrumb" class="breadcrumb"></nav>
+
+<main class="layout">
+  <section class="view-panel">
+    <div id="treemap-view" class="pane">
+      <canvas id="treemap"></canvas>
+      <div id="tooltip" class="tooltip" hidden></div>
+      <div id="overlay" class="overlay" hidden></div>
+    </div>
+
+    <div id="tree-view" class="pane" hidden>
+      <div class="tree-header">
+        <span class="th-name">
+          名称
+          <button id="tree-sort" class="mini-button" title="切换排序">按大小 ↓</button>
+        </span>
+        <span class="th-bar"></span>
+        <span class="th-size">占用</span>
+        <span class="th-share">占上级</span>
+      </div>
+      <div id="tree-body" class="tree-body"></div>
+      <div id="tree-status" class="tree-status"></div>
+    </div>
+  </section>
+
+  <aside class="sidebar">
+    <div class="card">
+      <div class="card-title">当前目录</div>
+      <div id="summary" class="summary"></div>
+    </div>
+    <div class="card card-grow">
+      <div class="card-title">占用排行 <span id="ranking-note" class="card-note"></span></div>
+      <div id="ranking" class="ranking"></div>
+    </div>
+  </aside>
+</main>
+
+<footer id="statusbar" class="statusbar"></footer>
+
+<script src="/static/tree.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
